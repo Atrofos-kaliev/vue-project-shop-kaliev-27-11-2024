@@ -9,6 +9,7 @@ const category = ref(null);
 const searchText = ref('');
 const products = ref([]);
 products.value = productsStore.products;
+
 const filterCategory = () => {
   products.value = productsStore.filterProductsByCategoryName(category.value, null);
 }
@@ -16,6 +17,13 @@ const searchName = () => {
 category.value = null;
 products.value = productsStore.filterProductsByCategoryName(null, searchText.value);
 }
+
+const resetFilters = () => {
+    category.value = null;
+    searchText.value = '';
+    filterProducts();
+};
+
 </script>
 <template>
   <div class="container">
@@ -32,7 +40,7 @@ products.value = productsStore.filterProductsByCategoryName(null, searchText.val
           <input type="text" class="form-control" value="Search by name" aria-label="readonly input example" v-model="searchText" @input="searchName">
         </div>
           <div class="col md-2">
-            <button type="button" class="btn btn-outline-warning">warning</button>
+            <button type="button" class="btn btn-outline-warning" @click="resetFilters">reset</button>
       </div>
       <div class="row row-cols-1 row-cols-md-3 g-4">
     <div class="col" v-for="product in products" :key="product.id">
@@ -44,7 +52,8 @@ products.value = productsStore.filterProductsByCategoryName(null, searchText.val
           <p class="card-text"> {{ product.category }} </p>
           <p class="card-text"> {{ product.publish_at }}</p>
           <div class="card-footer text-end">
-          <button type="button" class="btn btn-outline-info">Detail</button>
+            <router-link :to="`/product/${product.id}`" class="btn btn-outline-info me-2">Detail</router-link>
+          <!-- <button type="button" class="btn btn-outline-info me-2">Detail</button> -->
           <button type="button" class="btn btn-outline-success">Cart</button>
           </div>
         </div>
