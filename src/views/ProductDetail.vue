@@ -2,14 +2,8 @@
   import { ref } from 'vue';
   import { useRoute } from 'vue-router';
   import { useProductStore } from '@/stores/product';
-import { useCartStore } from '@/stores/cart';
-  
-  // const route = useRoute();
-  // const productStore = useProductStore();
-  // const product = ref(null);
-  
-  // product.value = productStore.products.find(p => p.id === parseInt(route.params.id));
-
+  import { useCartStore } from '@/stores/cart';
+ 
   const cartStore = useCartStore();
   
   const addToCart = () => {
