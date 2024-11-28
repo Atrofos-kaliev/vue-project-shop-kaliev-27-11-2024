@@ -1,10 +1,12 @@
 <script setup>
+import { useCartStore } from '@/stores/cart';
 import { useCategoryStore } from '@/stores/category';
 import { useProductStore } from '@/stores/product';
 import { ref,} from 'vue'
 
 const productsStore = useProductStore();
 const categoryStore = useCategoryStore();
+const cartStore = useCartStore();
 const category = ref(null);
 const searchText = ref('');
 const products = ref([]);
@@ -21,8 +23,9 @@ products.value = productsStore.filterProductsByCategoryName(null, searchText.val
 const resetFilters = () => {
     category.value = null;
     searchText.value = '';
-    filterProducts();
+    products.value = productsStore.products;
 };
+
 
 </script>
 <template>
@@ -54,7 +57,7 @@ const resetFilters = () => {
           <div class="card-footer text-end">
             <router-link :to="`/product/${product.id}`" class="btn btn-outline-info me-2">Detail</router-link>
           <!-- <button type="button" class="btn btn-outline-info me-2">Detail</button> -->
-          <button type="button" class="btn btn-outline-success">Cart</button>
+          <button type="button" class="btn btn-outline-success" @click="cartStore.addToCart(product.id)">Cart</button>
           </div>
         </div>
       </div>
@@ -63,3 +66,50 @@ const resetFilters = () => {
   </div>
   </div>
   </template>
+
+<style scoped>
+/* Custom Styles */
+.container {
+  max-width: 1200px;
+}
+
+.card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.card-body {
+  padding: 20px;
+}
+
+.card-footer {
+  background-color: #f8f9fa;
+}
+
+.card-footer button {
+  transition: background-color 0.3s ease;
+}
+
+.card-footer button:hover {
+  background-color: #28a745;
+}
+
+input.form-control,
+select.form-select {
+  border-radius: 50px;
+  font-size: 1.1rem;
+}
+
+button.btn {
+  border-radius: 10px;
+  font-size: 1.1rem;
+}
+
+button.btn:hover {
+  opacity: 0.9;
+}
+</style>

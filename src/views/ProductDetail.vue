@@ -1,4 +1,27 @@
-<template>
+  <script setup>
+  import { ref } from 'vue';
+  import { useRoute } from 'vue-router';
+  import { useProductStore } from '@/stores/product';
+import { useCartStore } from '@/stores/cart';
+  
+  // const route = useRoute();
+  // const productStore = useProductStore();
+  // const product = ref(null);
+  
+  // product.value = productStore.products.find(p => p.id === parseInt(route.params.id));
+
+  const cartStore = useCartStore();
+  
+  const addToCart = () => {
+  cartStore.addToCart(product.id);
+};
+
+  const productStore = useProductStore();
+  const route = useRoute();
+  const product = productStore.findProductById(route.params.id);
+  </script>
+
+  <template>
         <div class="container mt-4">
       <div class="row">
         <div class="col-md-6">
@@ -17,28 +40,15 @@
 
   </template>
   
-  <script setup>
-  import { ref } from 'vue';
-  import { useRoute } from 'vue-router';
-  import { useProductStore } from '@/stores/product';
-  
-  const route = useRoute();
-  const productStore = useProductStore();
-  const product = ref(null);
-  
-  product.value = productStore.products.find(p => p.id === parseInt(route.params.id));
-  </script>
-  
-  <style>
-  .container {
-      color: #000000;
-      padding: 2rem;
-      border-radius: 8px;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+<style>
+.container {
+  color: #000000;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   }
-  
   .btn-danger {
-      background-color: #dc3545;
-      border-color: #dc3545;
+    background-color: #dc3545;
+    border-color: #dc3545;
   }
   </style>
