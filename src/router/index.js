@@ -4,9 +4,22 @@ import AboutView from '@/views/AboutView.vue';
 import ProductDetail from '@/views/ProductDetail.vue';
 
 const routes = [
-  { path: '/', name: 'Home', component: HomeView },
-  { path: '/about', name: 'About', component: AboutView },
-  { path: '/product/:id', name: 'ProductDetail', component: ProductDetail },
+  { path: '/',
+    name: 'Home',
+    component: HomeView
+  },
+  { path: '/about',
+    name: 'About',
+    component: AboutView
+  },
+  { path: '/product/:id',
+    name: 'ProductDetail',
+    component: ProductDetail
+  },
+  { path: '/cart',
+    name: 'cart',
+    component: () => import('../views/CartView.vue'),
+  },
 ];
 
 const router = createRouter({
