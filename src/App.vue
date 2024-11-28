@@ -18,6 +18,12 @@ import { RouterLink, RouterView } from 'vue-router'
           <router-link to="/cart" class="nav-link">Cart</router-link>
         </li>
         <li class="nav-item">
+          <router-link to="/orders" class="nav-link">My orders</router-link>
+        </li>
+        <li class="nav-item">
+          <router-link to="/adminOrders" class="nav-link">All orders</router-link>
+        </li>
+        <li>
           <router-link to="/about" class="nav-link">About</router-link>
         </li>
       </ul>

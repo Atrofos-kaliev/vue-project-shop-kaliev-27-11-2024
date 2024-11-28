@@ -34,7 +34,7 @@ const cartStore = useCartStore();
                        @input="cartStore.updateCountCart(product.productId, parseInt($event.target.value))" />
               </td>
               <td>
-                <button type="button" class="btn btn-primary md-2 mx-2 " @click="$router.push('/detail/' + product.productId)">Buy</button>
+                <button type="button" class="btn btn-primary md-2 mx-2 " @click="$router.push('/product/' + product.productId)">Detail</button>
                 <button type="button" class="btn btn-outline-danger" @click="cartStore.deleteProduct(product.productId)">Delete</button>
               </td>
             </tr>

@@ -68,7 +68,6 @@ const resetFilters = () => {
   </template>
 
 <style scoped>
-/* Custom Styles */
 .container {
   max-width: 1200px;
 }

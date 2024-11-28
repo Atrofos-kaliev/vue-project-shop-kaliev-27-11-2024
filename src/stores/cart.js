@@ -44,6 +44,11 @@ export const useCartStore = defineStore('cart', () => {
         }
       };
 
+      const clearCart = () => {
+        carts.value = [];
+    };
+    
+
     const productStore = useProductStore();
     const cartList = computed(() => {
         return carts.value.map((cartProduct) => {
@@ -63,6 +68,7 @@ export const useCartStore = defineStore('cart', () => {
         addToCart,
         cartList,
         deleteProduct,
+        clearCart,
 }
 }
 );

@@ -20,6 +20,21 @@ const routes = [
     name: 'cart',
     component: () => import('../views/CartView.vue'),
   },
+  {
+    path: '/checkout',
+    name: 'Checkout',
+    component: () => import('../views/CheckoutView.vue'),
+  },
+  {
+    path: "/orders",
+    name: "Orders",
+    component: () => import('../views/OrdersView.vue'),
+  },
+  {
+    path: "/adminOrders",
+    name: "AllOrders",
+    component: () => import('../views/AdminOrderView.vue'),
+  },
 ];
 
 const router = createRouter({
